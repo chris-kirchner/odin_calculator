@@ -1,0 +1,118 @@
+html {
+  background-color: rgb(104, 104, 104);
+}
+
+#calculator-container {
+  display: flex;
+  justify-content: center;
+  border: 1px solid rgb(211, 211, 211);
+}
+
+#calculator-base {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 600px;
+  width: 400px;
+  background-color: rgb(194, 194, 194);
+}
+
+#display-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  /* height: 12%; */
+  width: 90%;
+  padding: 6px;
+  font-family: Arial, sans-serif;
+  color: rgb(88, 88, 88);
+  background-color: rgb(158, 158, 158);
+  margin-top: 12px;
+}
+
+.display1 {
+  line-height: 15px;
+  height: 20px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: .02ch;
+  padding-right: 6px;
+  /* background-color: lime; */
+}
+.display2 {
+  line-height: 60px;
+  height: 60px;
+  font-size: 70px;
+  font-weight: 800;
+  letter-spacing: .05ch;
+  /* background-color: rgba(255, 192, 203, 0.26); */
+}
+
+#buttons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 94%;
+}
+
+#numbers-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  flex-wrap: wrap-reverse;
+}
+
+button.number {
+  width: 100%;
+  font-family: sans-serif;
+  font-size: 40px;
+  font-weight: 500;
+  width: 32%;
+  border: 1px solid rgb(155, 155, 155);
+  color: rgb(71, 71, 71);
+  background-color:rgb(214, 214, 214);
+  transition: background-color 0.7s;
+}
+
+button.number:hover {
+  background-color: rgb(230, 230, 230);
+  transition: background-color 0.3s;
+}
+
+#operators-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  margin: 16px 0px 5px 0px;
+}
+
+button.operator {
+  text-align: center;
+  width: 100%;
+  height: 40px;
+  font-size: 30px;
+  font-weight: 500;
+  border: 1px solid rgb(155, 155, 155);
+  background-color: rgb(200, 209, 216);
+  transition: background-color 0.7s;
+}
+
+button.operator:hover {
+  background-color: rgb(215, 225, 233);
+  transition: background-color 0.3s;
+}
+
+button {
+  border-radius: 4px;
+}
+
+.period {
+  flex: 1;
+}
+
+.enter {
+  flex: 3;
+}
