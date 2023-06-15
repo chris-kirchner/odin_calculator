@@ -31,18 +31,20 @@ html {
   margin-top: 12px;
 }
 
-.display1 {
+#display1 {
   line-height: 15px;
-  height: 20px;
+  height: 14px;
   font-size: 20px;
   font-weight: 600;
   letter-spacing: .02ch;
   padding-right: 6px;
+  color: rgb(107, 107, 107);
   /* background-color: lime; */
 }
-.display2 {
+
+#display2 {
   line-height: 60px;
-  height: 60px;
+  height: 55px;
   font-size: 70px;
   font-weight: 800;
   letter-spacing: .05ch;
@@ -110,9 +112,9 @@ button {
 }
 
 .period {
-  flex: 1;
+  flex: 2;
 }
 
-.enter {
-  flex: 3;
+.equals {
+  flex: 1.7 0 auto;
 }
