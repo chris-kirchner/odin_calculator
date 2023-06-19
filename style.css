@@ -25,9 +25,9 @@ html {
   flex-direction: column;
   align-items: flex-end;
   justify-content: space-between;
-  /* height: 12%; */
+  /* height: 15%; */
   width: 90%;
-  padding: 6px;
+  padding: 6px 6px 10px 6px;
   font-family: Arial, sans-serif;
   color: rgb(88, 88, 88);
   background-color: rgb(158, 158, 158);
@@ -48,7 +48,7 @@ html {
 
 #display2 {
   line-height: 60px;
-  height: 55px;
+  max-height: 55px;
   font-size: 70px;
   font-weight: 800;
   letter-spacing: .05ch;
