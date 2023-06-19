@@ -5,7 +5,8 @@ html {
 #calculator-container {
   display: flex;
   justify-content: center;
-  border: 1px solid rgb(211, 211, 211);
+  /* border: 1px solid rgb(211, 211, 211); */
+  margin-top: 50px;
 }
 
 #calculator-base {
@@ -15,6 +16,8 @@ html {
   height: 600px;
   width: 400px;
   background-color: rgb(194, 194, 194);
+  border-radius: 5px;
+  box-shadow: 0px 80px 80px rgba(0, 0 , 0, 15%);
 }
 
 #display-container {
@@ -40,6 +43,7 @@ html {
   padding-right: 6px;
   color: rgb(107, 107, 107);
   /* background-color: lime; */
+  max-width: 360px;
 }
 
 #display2 {
@@ -67,7 +71,6 @@ html {
 }
 
 button.number {
-  width: 100%;
   font-family: sans-serif;
   font-size: 40px;
   font-weight: 500;
@@ -81,6 +84,11 @@ button.number {
 button.number:hover {
   background-color: rgb(230, 230, 230);
   transition: background-color 0.3s;
+}
+
+button.number:active {
+  background-color: rgb(245, 245, 245);
+  transition: background-color 0.1s;
 }
 
 #operators-container {
@@ -107,6 +115,11 @@ button.operator:hover {
   transition: background-color 0.3s;
 }
 
+button.operator:active {
+  background-color: rgb(225, 235, 243);
+  transition: background-color 0.1s;
+}
+
 button {
   border-radius: 4px;
 }
@@ -117,4 +130,19 @@ button {
 
 .equals {
   flex: 1.7 0 auto;
+}
+
+button.number.equals {
+  background-color: rgb(200, 209, 216);
+  transition: background-color 0.7s;
+}
+
+button.number.equals:hover {
+  background-color: rgb(215, 225, 233);
+  transition: background-color 0.3s;
+}
+
+button.number.equals:active {
+  background-color: rgb(225, 235, 243);
+  transition: background-color 0.1s;
 }
