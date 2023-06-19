@@ -48,16 +48,28 @@ let answer = 0;
 let regEx = /\d+/g;
 display2.style.fontSize = "70px";
 
-function fontScale() {
+function display2FontScale() {
   if (display2.clientWidth <= 358) {
     display2.style.fontSize = "70px";
   }
   if (display2.clientWidth > 358) {
-    // display2FontSize = regEx.exec(display2.style.fontSize)[0];
     let display2FontSize = 70;
     while (display2.clientWidth > 358) {
       display2FontSize -= 1;
       display2.style.fontSize = display2FontSize + "px";
+    }
+  }
+};
+
+function display1FontScale() {
+  if (display1.clientWidth <= 358) {
+    display1.style.fontSize = "20px";
+  }
+  if (display1.clientWidth > 358) {
+    let display1FontSize = 20;
+    while (display1.clientWidth > 358) {
+      display1FontSize -= 1;
+      display1.style.fontSize = display1FontSize + "px";
     }
   }
 };
@@ -81,24 +93,27 @@ function buttonClick(e) {
     numEntered = 0;
   }
 
-  if (e.target.innerText === "=" && operator !== "" && answer === 0) {
+  if (e.target.innerText === "=" && operator === "/" && answer === 0 && display2.innerText === "0") {
+    num2 = parseFloat(display2.innerText);
+    display1.innerText += ` ${display2.innerText} =`;
+    display2.innerText = "Probably 42";
+  }
+  else if (e.target.innerText === "=" && operator !== "" && answer === 0) {
     num2 = parseFloat(display2.innerText);
     display1.innerText += ` ${display2.innerText} =`;
     display2.innerText = operate(operator, num1, num2);
     answer = 1;
-    fontScale();
   }
   else if (e.target.innerText === "=" && operator !== "" && answer === 1) {
     num1 = parseFloat(display2.innerText);
     display1.innerText = `${num1} ${operator} ${num2} =`;
     display2.innerText = operate(operator, num1, num2);
-    fontScale();
   }
   else if (e.target.innerText === "=" && operator === "" && answer === 0) {
     num1 = parseFloat(display2.innerText);
-    display1.innerText = num1 + " =";
-    fontScale();
+    display1.innerText = `${num1} =`;
   }
+
 
   if (e.target.innerText === "." && decimalEntered === 0 && operator === "") {
     display2.innerText += e.target.innerText;
@@ -136,21 +151,6 @@ function buttonClick(e) {
       display2.innerText = e.target.innerText;
     }
   }
+  display1FontScale();
+  display2FontScale();
 }
-
-
-
-// display2.style.fontSize = "70px";
-// let regExNum = parseInt(regEx.exec(display2.style.fontSize)[0]);
-// console.log(regExNum);
-// console.log(display2.clientWidth);
-// console.log(displayContainer.clientWidth);
-
-// if (display2.clientWidth > 360) {
-//   display2.style.fontSize = "70px";
-//   let newFontSize = parseInt(regEx.exec(display2.style.fontSize)[0]);
-//   while (display2.clientWidth > 360) {
-//     newFontSize -= 1;
-//     display2.style.fontSize = newFontSize + "px";
-//   }
-// }
