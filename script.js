@@ -39,9 +39,9 @@ for (let i = 0; i < allButtons.length; i++) {
   allButtons[i].addEventListener("click", buttonClick);
 }
 
-let num1 = 0;
+let num1 = null;
 let operator = "";
-let num2 = 0;
+let num2 = null;
 let numEntered = 0;
 let decimalEntered = 0;
 let answer = 0;
@@ -83,14 +83,33 @@ function buttonClick(e) {
     answer = 0;
     operator = "";
     display2.style.fontSize = "70px";
+    num1 = null;
+    num2 = null;
   }
 
   if (e.target.innerText === "+" || e.target.innerText === "-" || e.target.innerText === "*" || e.target.innerText === "/") {
-    num1 = parseFloat(display2.innerText);
-    operator = e.target.innerText;
-    display1.innerText = `${display2.innerText} ${operator}`;
-    decimalEntered = 0;
-    numEntered = 0;
+    if (operator !== "" && answer === 0) {
+        num2 = parseFloat(display2.innerText);
+        display1.innerText = ` ${operate(operator, num1, num2)} ${e.target.innerText}`;
+        display2.innerText = operate(operator, num1, num2);
+        num1 = parseFloat(display2.innerText);
+        operator = e.target.innerText;
+        numEntered = 0;
+    }
+    else if (operator !== "" && answer === 1) {
+      num1 = parseInt(display2.innerText);
+      operator = e.target.innerText;
+      display1.innerText = `${num1} ${operator}`
+      numEntered = 0;
+      answer = 0;
+    }
+    else {
+      num1 = parseFloat(display2.innerText);
+      operator = e.target.innerText;
+      display1.innerText = `${display2.innerText} ${operator}`;
+      decimalEntered = 0;
+      numEntered = 0;
+    }
   }
 
   if (e.target.innerText === "=" && operator === "/" && answer === 0 && display2.innerText === "0") {
@@ -103,6 +122,7 @@ function buttonClick(e) {
     display1.innerText += ` ${display2.innerText} =`;
     display2.innerText = operate(operator, num1, num2);
     answer = 1;
+    numEntered = 0;
   }
   else if (e.target.innerText === "=" && operator !== "" && answer === 1) {
     num1 = parseFloat(display2.innerText);
