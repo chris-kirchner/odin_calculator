@@ -62,6 +62,35 @@ html {
   width: 94%;
 }
 
+#functions-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  margin: 16px 0px 5px 0px;
+}
+
+button.function {
+  text-align: center;
+  width: 100%;
+  height: 40px;
+  font-size: 30px;
+  font-weight: 500;
+  border: 1px solid rgb(155, 155, 155);
+  background-color: rgb(211, 205, 195);
+  transition: background-color 0.7s;
+}
+
+button.function:hover {
+  background-color: rgb(224, 218, 207);
+  transition: background-color 0.3s;
+}
+
+button.function:active {
+  background-color: rgb(233, 227, 215);
+  transition: background-color 0.1s;
+}
+
 #numbers-container {
   width: 100%;
   display: flex;
@@ -96,7 +125,7 @@ button.number:active {
   display: flex;
   justify-content: space-between;
   gap: 4px;
-  margin: 16px 0px 5px 0px;
+  margin: 2px 0px 5px 0px;
 }
 
 button.operator {
@@ -125,11 +154,32 @@ button {
 }
 
 .decimal {
-  flex: 2;
+  flex: 2.8;
 }
 
 .equals {
-  flex: 1.7 0 auto;
+  flex: 7.01;
+}
+
+.positive-negative {
+  flex: 2.5;
+}
+
+button.number.positive-negative {
+  background-color: rgb(200, 209, 216);
+  transition: background-color 0.7s;
+  font-size: 30px;
+  padding: 10px;
+}
+
+button.number.positive-negative:hover {
+  background-color: rgb(215, 225, 233);
+  transition: background-color 0.3s;
+}
+
+button.number.positive-negative:active {
+  background-color: rgb(225, 235, 243);
+  transition: background-color 0.1s;
 }
 
 button.number.equals {
