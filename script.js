@@ -87,6 +87,31 @@ function buttonClick(e) {
     num2 = null;
   }
 
+  if (e.target.innerText === "Backspace") {
+    if (display2.innerText.length <= 1) {
+      display2.innerText = 0;
+      numEntered = 0;
+    }
+    else {
+      let numbers = display2.innerText.split("");
+      numbers.pop();
+      display2.innerText = numbers.join("");
+    } 
+  }
+
+  if (e.target.innerText === "+/-") {
+    if (parseFloat(display2.innerText) > 0) {
+      let number = display2.innerText.split("");
+      number.unshift("-");
+      display2.innerText = number.join("");
+    }
+    else if (parseFloat(display2.innerText) < 0) {
+      let number = display2.innerText.split("");
+      number.shift();
+      display2.innerText = number.join("");
+    }
+  }
+
   if (e.target.innerText === "+" || e.target.innerText === "-" || e.target.innerText === "*" || e.target.innerText === "/") {
     if (operator !== "" && answer === 0) {
         num2 = parseFloat(display2.innerText);
@@ -97,7 +122,7 @@ function buttonClick(e) {
         numEntered = 0;
     }
     else if (operator !== "" && answer === 1) {
-      num1 = parseInt(display2.innerText);
+      num1 = parseFloat(display2.innerText);
       operator = e.target.innerText;
       display1.innerText = `${num1} ${operator}`
       numEntered = 0;
@@ -115,7 +140,7 @@ function buttonClick(e) {
   if (e.target.innerText === "=" && operator === "/" && answer === 0 && display2.innerText === "0") {
     num2 = parseFloat(display2.innerText);
     display1.innerText += ` ${display2.innerText} =`;
-    display2.innerText = "Probably 42";
+    display2.innerText = "Can't divide by zero";
   }
   else if (e.target.innerText === "=" && operator !== "" && answer === 0) {
     num2 = parseFloat(display2.innerText);
@@ -133,7 +158,6 @@ function buttonClick(e) {
     num1 = parseFloat(display2.innerText);
     display1.innerText = `${num1} =`;
   }
-
 
   if (e.target.innerText === "." && decimalEntered === 0 && operator === "") {
     display2.innerText += e.target.innerText;
@@ -171,6 +195,13 @@ function buttonClick(e) {
       display2.innerText = e.target.innerText;
     }
   }
+
+  if (answer === 1 && e.target.innerText >= 0 && e.target.innerText <= 9) {
+    display1.innerText = "";
+    display2.innerText = e.target.innerText;
+    numEntered = 1;
+  }
+
   display1FontScale();
   display2FontScale();
 }
