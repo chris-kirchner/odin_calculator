@@ -31,6 +31,7 @@ function operate(operator, num1, num2) {
     return "Error";
   };
 };
+
 let displayContainer = document.getElementById("display-container");
 let display1 = document.getElementById("display1");
 let display2 = document.getElementById("display2");
@@ -113,13 +114,17 @@ function buttonClick(e) {
   }
 
   if (e.target.innerText === "+" || e.target.innerText === "-" || e.target.innerText === "*" || e.target.innerText === "/") {
-    if (operator !== "" && answer === 0) {
-        num2 = parseFloat(display2.innerText);
-        display1.innerText = ` ${operate(operator, num1, num2)} ${e.target.innerText}`;
-        display2.innerText = operate(operator, num1, num2);
-        num1 = parseFloat(display2.innerText);
-        operator = e.target.innerText;
-        numEntered = 0;
+    if (operator !== "" & answer === 0 && numEntered === 0) {
+      operator = e.target.innerText;
+      display1.innerText = `${num1} ${operator}`;
+    }
+    else if (operator !== "" && answer === 0) {
+      num2 = parseFloat(display2.innerText);
+      display1.innerText = ` ${operate(operator, num1, num2)} ${e.target.innerText}`;
+      display2.innerText = operate(operator, num1, num2);
+      num1 = parseFloat(display2.innerText);
+      operator = e.target.innerText;
+      numEntered = 0;
     }
     else if (operator !== "" && answer === 1) {
       num1 = parseFloat(display2.innerText);
