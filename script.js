@@ -39,6 +39,12 @@ let allButtons = document.getElementsByTagName("button");
 for (let i = 0; i < allButtons.length; i++) {
   allButtons[i].addEventListener("click", buttonClick);
 }
+window.addEventListener("keydown", buttonClick);
+function keyPress(e) {
+  console.log(e);
+  console.log(e.key, e.code);
+  console.log(typeof e.key, typeof e.code);
+}
 
 let num1 = null;
 let operator = "";
@@ -76,7 +82,15 @@ function display1FontScale() {
 };
 
 function buttonClick(e) {
-  if (e.target.innerText === "C") {
+  let button = "";
+  if (e.key) {
+    button = e.key;
+  }
+  else {
+    button = e.target.innerText;
+  }
+
+  if (button === "C") {
     display1.innerText = "";
     display2.innerText = 0;
     numEntered = 0;
@@ -88,7 +102,7 @@ function buttonClick(e) {
     num2 = null;
   }
 
-  if (e.target.innerText === "Backspace") {
+  if (button === "Backspace") {
     if (display2.innerText.length <= 1) {
       display2.innerText = 0;
       numEntered = 0;
@@ -100,7 +114,7 @@ function buttonClick(e) {
     } 
   }
 
-  if (e.target.innerText === "+/-") {
+  if (button === "+/-") {
     if (parseFloat(display2.innerText) > 0) {
       let number = display2.innerText.split("");
       number.unshift("-");
@@ -113,100 +127,101 @@ function buttonClick(e) {
     }
   }
 
-  if (e.target.innerText === "+" || e.target.innerText === "-" || e.target.innerText === "*" || e.target.innerText === "/") {
+  if (button === "+" || button === "-" || button === "*" || button === "/") {
     if (operator !== "" & answer === 0 && numEntered === 0) {
-      operator = e.target.innerText;
+      operator = button;
       display1.innerText = `${num1} ${operator}`;
     }
     else if (operator !== "" && answer === 0) {
       num2 = parseFloat(display2.innerText);
-      display1.innerText = ` ${operate(operator, num1, num2)} ${e.target.innerText}`;
+      display1.innerText = ` ${operate(operator, num1, num2)} ${button}`;
       display2.innerText = operate(operator, num1, num2);
       num1 = parseFloat(display2.innerText);
-      operator = e.target.innerText;
+      operator = button;
       numEntered = 0;
     }
     else if (operator !== "" && answer === 1) {
       num1 = parseFloat(display2.innerText);
-      operator = e.target.innerText;
+      operator = button;
       display1.innerText = `${num1} ${operator}`
       numEntered = 0;
       answer = 0;
     }
     else {
       num1 = parseFloat(display2.innerText);
-      operator = e.target.innerText;
+      operator = button;
       display1.innerText = `${display2.innerText} ${operator}`;
       decimalEntered = 0;
       numEntered = 0;
     }
   }
 
-  if (e.target.innerText === "=" && operator === "/" && answer === 0 && display2.innerText === "0") {
+  if ((button === "=" || button === "Enter") && operator === "/" && answer === 0 && display2.innerText === "0") {
     num2 = parseFloat(display2.innerText);
     display1.innerText += ` ${display2.innerText} =`;
     display2.innerText = "Can't divide by zero";
   }
-  else if (e.target.innerText === "=" && operator !== "" && answer === 0) {
+  else if ((button === "=" || button === "Enter") && operator !== "" && answer === 0) {
     num2 = parseFloat(display2.innerText);
     display1.innerText += ` ${display2.innerText} =`;
     display2.innerText = operate(operator, num1, num2);
     answer = 1;
     numEntered = 0;
   }
-  else if (e.target.innerText === "=" && operator !== "" && answer === 1) {
+  else if ((button === "=" || button === "Enter") && operator !== "" && answer === 1) {
     num1 = parseFloat(display2.innerText);
     display1.innerText = `${num1} ${operator} ${num2} =`;
     display2.innerText = operate(operator, num1, num2);
   }
-  else if (e.target.innerText === "=" && operator === "" && answer === 0) {
+  else if ((button === "=" || button === "Enter") && operator === "" && answer === 0) {
     num1 = parseFloat(display2.innerText);
     display1.innerText = `${num1} =`;
   }
 
-  if (e.target.innerText === "." && decimalEntered === 0 && operator === "") {
-    display2.innerText += e.target.innerText;
+  if (button === "." && decimalEntered === 0 && operator === "") {
+    display2.innerText += button;
     numEntered = 1;
     decimalEntered = 1;
   }
   else {
-    if (e.target.innerText === "." && decimalEntered === 0 && numEntered === 0 && operator !== "") {
+    if (button === "." && decimalEntered === 0 && numEntered === 0 && operator !== "") {
       display2.innerText = 0 + ".";
       numEntered = 1;
       decimalEntered = 1;
     }
-    else if (e.target.innerText === "." && decimalEntered === 0 && numEntered === 1 && operator !== "") {
-      display2.innerText += e.target.innerText;
+    else if (button === "." && decimalEntered === 0 && numEntered === 1 && operator !== "") {
+      display2.innerText += button;
     }
   }
 
-  if (operator === "" && numEntered === 0 && e.target.innerText >= 1 && e.target.innerText <= 9) {
-    display2.innerText = e.target.innerText;
+  if (operator === "" && numEntered === 0 && button >= 1 && button <= 9) {
+    display2.innerText = button;
     numEntered = 1;
   }
-  else if (operator === "" && numEntered === 1 && e.target.innerText >= 0 && e.target.innerText <= 9) {
-    display2.innerText += e.target.innerText;
+  else if (operator === "" && numEntered === 1 && button >= 0 && button <= 9) {
+    display2.innerText += button;
   }
 
-  if (operator !== "" && numEntered === 0 && e.target.innerText >= 0 && e.target.innerText <= 9) {
-    display2.innerText = e.target.innerText;
+  if (operator !== "" && numEntered === 0 && button >= 0 && button <= 9) {
+    display2.innerText = button;
     numEntered = 1;
   }
-  else if (operator !== "" && numEntered === 1 && e.target.innerText >= 0 && e.target.innerText <= 9) {
+  else if (operator !== "" && numEntered === 1 && button >= 0 && button <= 9) {
     if (display2.innerText !== "0") {
-      display2.innerText += e.target.innerText;
+      display2.innerText += button;
     }
     else if (display2.innerText === "0") {
-      display2.innerText = e.target.innerText;
+      display2.innerText = button;
     }
   }
 
-  if (answer === 1 && e.target.innerText >= 0 && e.target.innerText <= 9) {
+  if (answer === 1 && button >= 0 && button <= 9) {
     display1.innerText = "";
-    display2.innerText = e.target.innerText;
+    display2.innerText = button;
     numEntered = 1;
   }
 
   display1FontScale();
   display2FontScale();
+  e.target.blur();
 }
