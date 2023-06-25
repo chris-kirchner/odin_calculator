@@ -172,6 +172,7 @@ function buttonClick(e) {
     num1 = parseFloat(display2.innerText);
     display1.innerText = `${num1} ${operator} ${num2} =`;
     display2.innerText = operate(operator, num1, num2);
+    numEntered = 0;
   }
   else if ((button === "=" || button === "Enter") && operator === "" && answer === 0) {
     num1 = parseFloat(display2.innerText);
@@ -192,6 +193,18 @@ function buttonClick(e) {
     else if (button === "." && decimalEntered === 0 && numEntered === 1 && operator !== "") {
       display2.innerText += button;
     }
+  }
+
+  if (answer === 1 && button >= 0 && button <= 9) {
+    if (numEntered === 0) {
+      display1.innerText = "";
+      // display2.innerText = button;
+      // numEntered = 1;
+      answer = 0;
+      num1 = null;
+      operator = "";
+      num2 = null;
+    } 
   }
 
   if (operator === "" && numEntered === 0 && button >= 1 && button <= 9) {
@@ -215,10 +228,9 @@ function buttonClick(e) {
     }
   }
 
-  if (answer === 1 && button >= 0 && button <= 9) {
-    display1.innerText = "";
-    display2.innerText = button;
-    numEntered = 1;
+  if (display2.innerText === "-") {
+    display2.innerText = 0;
+    numEntered = 0;
   }
 
   display1FontScale();
