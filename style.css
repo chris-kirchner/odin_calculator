@@ -65,6 +65,7 @@ html {
 #functions-container {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 4px;
   margin: 16px 0px 5px 0px;
@@ -72,7 +73,7 @@ html {
 
 button.function {
   text-align: center;
-  width: 100%;
+  flex: 1;
   height: 40px;
   font-size: 30px;
   font-weight: 500;
@@ -88,6 +89,36 @@ button.function:hover {
 
 button.function:active {
   background-color: rgb(233, 227, 215);
+  transition: background-color 0.1s;
+}
+
+#operators-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px;
+  margin: 0px 0px 5px 0px;
+}
+
+button.operator {
+  text-align: center;
+  flex: 1;
+  height: 40px;
+  font-size: 30px;
+  font-weight: 500;
+  border: 1px solid rgb(155, 155, 155);
+  background-color: rgb(200, 209, 216);
+  transition: background-color 0.7s;
+}
+
+button.operator:hover {
+  background-color: rgb(215, 225, 233);
+  transition: background-color 0.3s;
+}
+
+button.operator:active {
+  background-color: rgb(225, 235, 243);
   transition: background-color 0.1s;
 }
 
@@ -120,49 +151,32 @@ button.number:active {
   transition: background-color 0.1s;
 }
 
-#operators-container {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  gap: 4px;
-  margin: 2px 0px 5px 0px;
-}
-
-button.operator {
-  text-align: center;
-  width: 100%;
-  height: 40px;
-  font-size: 30px;
-  font-weight: 500;
-  border: 1px solid rgb(155, 155, 155);
-  background-color: rgb(200, 209, 216);
-  transition: background-color 0.7s;
-}
-
-button.operator:hover {
-  background-color: rgb(215, 225, 233);
-  transition: background-color 0.3s;
-}
-
-button.operator:active {
-  background-color: rgb(225, 235, 243);
-  transition: background-color 0.1s;
-}
-
 button {
   border-radius: 4px;
 }
 
-.decimal {
+/* .decimal {
   flex: 2.8;
-}
-
-.equals {
-  flex: 7.01;
 }
 
 .positive-negative {
   flex: 2.5;
+}
+
+.equals {
+  flex: 7.01;
+} */
+
+#decimal-container {
+  display: flex;
+  width: 32%;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+#decimal-container button.number {
+  flex: 1;
+  flex-wrap: wrap;
 }
 
 button.number.positive-negative {
