@@ -40,11 +40,6 @@ for (let i = 0; i < allButtons.length; i++) {
   allButtons[i].addEventListener("click", buttonClick);
 }
 window.addEventListener("keydown", buttonClick);
-function keyPress(e) {
-  console.log(e);
-  console.log(e.key, e.code);
-  console.log(typeof e.key, typeof e.code);
-}
 
 let num1 = null;
 let operator = "";
@@ -198,8 +193,6 @@ function buttonClick(e) {
   if (answer === 1 && button >= 0 && button <= 9) {
     if (numEntered === 0) {
       display1.innerText = "";
-      // display2.innerText = button;
-      // numEntered = 1;
       answer = 0;
       num1 = null;
       operator = "";
