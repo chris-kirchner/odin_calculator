@@ -126,7 +126,8 @@ button.operator:active {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  gap: 6px;
+  /* gap: 6px; */
+  row-gap: 6px;
   flex-wrap: wrap-reverse;
 }
 
@@ -183,7 +184,7 @@ button.number.positive-negative {
   background-color: rgb(200, 209, 216);
   transition: background-color 0.7s;
   font-size: 30px;
-  padding: 10px;
+  padding: 0px 10px;
 }
 
 button.number.positive-negative:hover {
