@@ -179,6 +179,16 @@ function buttonClick(e) {
     numEntered = 1;
     decimalEntered = 1;
   }
+  else if (button === "." && decimalEntered === 0 && answer === 1 && numEntered === 0) {
+    display1.innerText = "";
+    display2.innerText = 0 + ".";
+    answer = 0;
+    num1 = null;
+    operator = "";
+    num2 = null;
+    numEntered = 1;
+    decimalEntered = 1;
+  }
   else {
     if (button === "." && decimalEntered === 0 && numEntered === 0 && operator !== "") {
       display2.innerText = 0 + ".";
