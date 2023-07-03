@@ -5,7 +5,6 @@ html {
 #calculator-container {
   display: flex;
   justify-content: center;
-  /* border: 1px solid rgb(211, 211, 211); */
   margin-top: 50px;
 }
 
@@ -24,7 +23,7 @@ html {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   /* height: 15%; */
   width: 90%;
   padding: 6px 6px 10px 6px;
@@ -43,7 +42,8 @@ html {
   padding-right: 6px;
   color: rgb(107, 107, 107);
   /* background-color: lime; */
-  max-width: 360px;
+  /* max-width: 360px; */
+  white-space: nowrap;
 }
 
 #display2 {
@@ -53,6 +53,7 @@ html {
   font-weight: 800;
   letter-spacing: .05ch;
   /* background-color: rgba(255, 192, 203, 0.26); */
+  white-space: nowrap;
 }
 
 #buttons-container {
@@ -80,6 +81,10 @@ button.function {
   border: 1px solid rgb(155, 155, 155);
   background-color: rgb(211, 205, 195);
   transition: background-color 0.7s;
+}
+
+button.function.backspace {
+  font-size: min(8vw, 30px);
 }
 
 button.function:hover {
@@ -154,19 +159,8 @@ button.number:active {
 
 button {
   border-radius: 4px;
+  padding: 0;
 }
-
-/* .decimal {
-  flex: 2.8;
-}
-
-.positive-negative {
-  flex: 2.5;
-}
-
-.equals {
-  flex: 7.01;
-} */
 
 #decimal-container {
   display: flex;
@@ -177,14 +171,13 @@ button {
 
 #decimal-container button.number {
   flex: 1;
-  flex-wrap: wrap;
 }
 
 button.number.positive-negative {
   background-color: rgb(200, 209, 216);
   transition: background-color 0.7s;
-  font-size: 30px;
-  padding: 0px 10px;
+  white-space: nowrap;
+  font-size: min(8vw, 30px);
 }
 
 button.number.positive-negative:hover {
