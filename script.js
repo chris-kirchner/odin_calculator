@@ -48,15 +48,21 @@ let numEntered = 0;
 let decimalEntered = 0;
 let answer = 0;
 let regEx = /\d+/g;
+let numRegEx = /[^.]+/g;
+let nonDigitRegEx = /\D+/g;
+let allNumRegEx = /[0-9,.]+/g
+let displayPadding = 12;
+let savedNum = "0";
 display2.style.fontSize = "70px";
 
+
 function display2FontScale() {
-  if (display2.clientWidth <= 358) {
+  if (display2.clientWidth <= displayContainer.clientWidth - displayPadding) {
     display2.style.fontSize = "70px";
   }
-  if (display2.clientWidth > 358) {
+  if (display2.clientWidth > displayContainer.clientWidth - displayPadding) {
     let display2FontSize = 70;
-    while (display2.clientWidth > 358) {
+    while (display2.clientWidth > displayContainer.clientWidth - displayPadding) {
       display2FontSize -= 1;
       display2.style.fontSize = display2FontSize + "px";
     }
@@ -64,17 +70,120 @@ function display2FontScale() {
 };
 
 function display1FontScale() {
-  if (display1.clientWidth <= 358) {
+  if (display1.clientWidth <= displayContainer.clientWidth - displayPadding) {
     display1.style.fontSize = "20px";
   }
-  if (display1.clientWidth > 358) {
+  if (display1.clientWidth > displayContainer.clientWidth - displayPadding) {
     let display1FontSize = 20;
-    while (display1.clientWidth > 358) {
+    while (display1.clientWidth > displayContainer.clientWidth - displayPadding) {
       display1FontSize -= 1;
       display1.style.fontSize = display1FontSize + "px";
     }
   }
 };
+
+function commaInsert() {
+  let d2Num = display2.innerText;
+  if (d2Num.match(allNumRegEx)) {
+    console.log("d2Num =", d2Num);
+    let fullNum = d2Num.match(numRegEx);
+    console.log("fullNum =", fullNum);
+    let numWhole = fullNum[0];
+    let numFraction = null;
+    if (fullNum[1]) {
+      numFraction = fullNum[1];
+    }
+    
+    // console.log(numWhole, numFraction);
+    
+    if (numWhole) {
+      let x = [];
+      for (let i = 0; i < numWhole.length; i++) {
+        if (numWhole[i] === ",") {
+          x = numWhole.split("");
+          x.splice(i, 1);
+          numWhole = x.join("");
+        }
+      }
+      console.log("numWhole =", numWhole);
+
+      if (numFraction) {
+        savedNum = parseFloat(numWhole + "." + numFraction);
+      }
+      else {
+        savedNum = parseFloat(numWhole);
+      }
+      
+      x = numWhole.split("");
+      // console.log(x, x.length);
+
+      if (x.length > 15) {
+        x.splice(-15, 0, ",");
+      }
+      if (x.length > 12) {
+        x.splice(-12, 0, ",");
+      }
+      if (x.length > 9) {
+        x.splice(-9, 0, ",");
+      }
+      if (x.length > 6) {
+        x.splice(-6, 0, ",");
+      }
+      if (x.length > 3) {
+        x.splice(-3, 0, ",");
+      }
+      numWhole = x.join("");
+
+      if (decimalEntered === 1 && !numFraction) {
+        console.log("decimal entered");
+      }
+      else if (decimalEntered === 1 && numFraction) {
+        console.log("Fractional number");
+        display2.innerText = `${numWhole}.${numFraction}`;
+      }
+      else if (decimalEntered === 0 && !numFraction) {
+        console.log("Whole number");
+        display2.innerText = `${numWhole}`;
+      }
+
+      if (answer === 1 && numFraction) {
+        console.log("Fractional number as answer");
+        display2.innerText = `${numWhole}.${numFraction}`;
+      }
+    }
+    console.log("numWhole:", numWhole);
+    console.log("numFraction:", numFraction);
+    console.log(`${numWhole}.${numFraction}`);
+    console.log("savedNum:", savedNum);
+    console.log("=================================");
+  }  
+};
+
+// function display1CommaInsert(num) {
+//   let x = [];
+//   num = num.match(numRegEx);
+//   let wholeNum = num[0].toString();
+//   x = wholeNum.split("");
+
+//   if (num.length > 15) {
+//     x.splice(-15, 0, ",");
+//   }
+//   if (num.length > 12) {
+//     x.splice(-12, 0, ",");
+//   }
+//   if (num.length > 9) {
+//     x.splice(-9, 0, ",");
+//   }
+//   if (num.length > 6) {
+//     x.splice(-6, 0, ",");
+//   }
+//   if (num.length > 3) {
+//     x.splice(-3, 0, ",");
+//   }
+//   num = x.join("");
+//   return num;
+// };
+
 
 function buttonClick(e) {
   let button = "";
@@ -120,6 +229,7 @@ function buttonClick(e) {
       number.shift();
       display2.innerText = number.join("");
     }
+    numEntered = 1;
   }
 
   if (button === "+" || button === "-" || button === "*" || button === "/") {
@@ -128,22 +238,23 @@ function buttonClick(e) {
       display1.innerText = `${num1} ${operator}`;
     }
     else if (operator !== "" && answer === 0) {
-      num2 = parseFloat(display2.innerText);
+      num2 = parseFloat(savedNum);
       display1.innerText = ` ${operate(operator, num1, num2)} ${button}`;
       display2.innerText = operate(operator, num1, num2);
-      num1 = parseFloat(display2.innerText);
+      num1 = parseFloat(savedNum);
       operator = button;
       numEntered = 0;
     }
     else if (operator !== "" && answer === 1) {
-      num1 = parseFloat(display2.innerText);
+      num1 = parseFloat(savedNum);
       operator = button;
-      display1.innerText = `${num1} ${operator}`
+      display1.innerText = `${display2.innerText} ${operator}`
       numEntered = 0;
       answer = 0;
     }
     else {
-      num1 = parseFloat(display2.innerText);
+      // num1 = parseFloat(display2.innerText);
+      num1 = parseFloat(savedNum);
       operator = button;
       display1.innerText = `${display2.innerText} ${operator}`;
       decimalEntered = 0;
@@ -155,22 +266,24 @@ function buttonClick(e) {
     num2 = parseFloat(display2.innerText);
     display1.innerText += ` ${display2.innerText} =`;
     display2.innerText = "Can't divide by zero";
+    answer = 1;
+    numEntered = 0;
   }
   else if ((button === "=" || button === "Enter") && operator !== "" && answer === 0) {
-    num2 = parseFloat(display2.innerText);
+    num2 = parseFloat(savedNum);
     display1.innerText += ` ${display2.innerText} =`;
     display2.innerText = operate(operator, num1, num2);
     answer = 1;
     numEntered = 0;
   }
   else if ((button === "=" || button === "Enter") && operator !== "" && answer === 1) {
-    num1 = parseFloat(display2.innerText);
+    num1 = parseFloat(savedNum);
     display1.innerText = `${num1} ${operator} ${num2} =`;
     display2.innerText = operate(operator, num1, num2);
     numEntered = 0;
   }
   else if ((button === "=" || button === "Enter") && operator === "" && answer === 0) {
-    num1 = parseFloat(display2.innerText);
+    num1 = parseFloat(savedNum);
     display1.innerText = `${num1} =`;
   }
 
@@ -197,6 +310,7 @@ function buttonClick(e) {
     }
     else if (button === "." && decimalEntered === 0 && numEntered === 1 && operator !== "") {
       display2.innerText += button;
+      decimalEntered = 1;
     }
   }
 
@@ -215,7 +329,9 @@ function buttonClick(e) {
     numEntered = 1;
   }
   else if (operator === "" && numEntered === 1 && button >= 0 && button <= 9) {
-    display2.innerText += button;
+    if (display2.innerText.length <= 20) {
+      display2.innerText += button;
+    }
   }
 
   if (operator !== "" && numEntered === 0 && button >= 0 && button <= 9) {
@@ -223,19 +339,20 @@ function buttonClick(e) {
     numEntered = 1;
   }
   else if (operator !== "" && numEntered === 1 && button >= 0 && button <= 9) {
-    if (display2.innerText !== "0") {
+    if (display2.innerText !== "0" && display2.innerText.length <= 20) {
       display2.innerText += button;
     }
     else if (display2.innerText === "0") {
       display2.innerText = button;
     }
-  }
+  };
 
   if (display2.innerText === "-") {
     display2.innerText = 0;
     numEntered = 0;
   }
 
+  commaInsert();
   display1FontScale();
   display2FontScale();
   e.target.blur();
