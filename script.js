@@ -40,6 +40,29 @@ for (let i = 0; i < allButtons.length; i++) {
   allButtons[i].addEventListener("click", buttonClick);
 }
 window.addEventListener("keydown", buttonClick);
+window.addEventListener("keydown", addKeyHighlight);
+
+function addKeyHighlight(e) {
+  console.log(e);
+  for (let i = 0; i < allButtons.length; i++) {
+    if (allButtons[i].innerText === e.key) {
+      allButtons[i].classList.add("highlight");
+    }
+    else if (allButtons[i].innerText === "C" && e.key === "c") {
+      allButtons[i].classList.add("highlight");
+    }
+    else if (allButtons[i].innerText === "=" && e.key === "Enter") {
+      allButtons[i].classList.add("highlight");
+    }
+  }
+  setTimeout(removeKeyHighlight, 100);
+};
+
+function removeKeyHighlight() {
+  for (let i = 0; i < allButtons.length; i++) {
+    allButtons[i].classList.remove("highlight");
+  }
+};
 
 let num1 = null;
 let operator = "";
@@ -84,27 +107,17 @@ function display1FontScale() {
 };
 
 function commaInsert(num) {
-  console.log(num);
-  console.log(typeof num);
+  // console.log(num);
+  // console.log(typeof num);
   if (num.match(allNumRegEx)) {
-    console.log("num =", num);
+    // console.log("num =", num);
     let fullNum = num.match(numRegEx);
-    console.log("fullNum =", fullNum);
+    // console.log("fullNum =", fullNum);
     let numWhole = fullNum[0];
     let numFraction = null;
     if (fullNum[1]) {
       numFraction = fullNum[1];
     }
-  // let d2Num = display2.innerText;
-  // if (d2Num.match(allNumRegEx)) {
-  //   console.log("d2Num =", d2Num);
-  //   let fullNum = d2Num.match(numRegEx);
-  //   console.log("fullNum =", fullNum);
-  //   let numWhole = fullNum[0];
-  //   let numFraction = null;
-  //   if (fullNum[1]) {
-  //     numFraction = fullNum[1];
-  //   }
     
     if (numWhole) {
       let x = [];
@@ -115,7 +128,7 @@ function commaInsert(num) {
           numWhole = x.join("");
         }
       }
-      console.log("numWhole =", numWhole);
+      // console.log("numWhole =", numWhole);
 
       if (numFraction) {
         savedNum = parseFloat(numWhole + "." + numFraction);
@@ -151,30 +164,30 @@ function commaInsert(num) {
       }
 
       if (decimalEntered === 1 && !numFraction) {
-        console.log("decimal entered");
+        // console.log("decimal entered");
       }
       else if (decimalEntered === 1 && numFraction) {
-        console.log("Fractional number");
+        // console.log("Fractional number");
         num = `${numWhole}.${numFraction}`;
       }
       else if (decimalEntered === 0 && !numFraction) {
-        console.log("Whole number");
+        // console.log("Whole number");
         num = `${numWhole}`;
       }
 
       if (answer === 1 && numFraction) {
-        console.log("Fractional number as answer");
+        // console.log("Fractional number as answer");
         num = `${numWhole}.${numFraction}`;
       }
     }
-    console.log("numWhole:", numWhole);
-    console.log("numFraction:", numFraction);
-    console.log(`${numWhole}.${numFraction}`);
-    console.log("savedNum:", savedNum);
-    console.log("=================================");
+    // console.log("numWhole:", numWhole);
+    // console.log("numFraction:", numFraction);
+    // console.log(`${numWhole}.${numFraction}`);
+    // console.log("savedNum:", savedNum);
+    // console.log("=================================");
   }
-  console.log(num);
-  console.log("=================================");
+  // console.log(num);
+  // console.log("=================================");
   return num;
 };
 
@@ -187,7 +200,7 @@ function buttonClick(e) {
     button = e.target.innerText;
   }
 
-  if (button === "C") {
+  if (button === "C" || button === "c") {
     display1.innerText = "";
     display2.innerText = 0;
     numEntered = 0;
@@ -216,13 +229,14 @@ function buttonClick(e) {
       let number = display2.innerText.split("");
       number.unshift("-");
       display2.innerText = number.join("");
+      numEntered = 1;
     }
     else if (parseFloat(display2.innerText) < 0) {
       let number = display2.innerText.split("");
       number.shift();
       display2.innerText = number.join("");
+      numEntered = 1;
     }
-    numEntered = 1;
   }
 
   if (button === "+" || button === "-" || button === "*" || button === "/") {
@@ -247,14 +261,14 @@ function buttonClick(e) {
     }
     else {
       num1 = parseFloat(savedNum);
-      console.log(num1);
+      // console.log(num1);
       operator = button;
       display1.innerText = `${display2.innerText} ${operator}`;
       decimalEntered = 0;
       numEntered = 0;
     }
   }
-  
+
   if ((button === "=" || button === "Enter") && operator === "/" && answer === 1 && display2.innerText === "Can't divide by zero") {
     display2.innerText = "Can't divide by zero";
     answer = 1;
