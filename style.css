@@ -97,6 +97,11 @@ button.function:active {
   transition: background-color 0.1s;
 }
 
+button.function.highlight {
+  background-color: rgb(233, 227, 215);
+  transition: background-color 0.1s;
+}
+
 #operators-container {
   width: 100%;
   display: flex;
@@ -127,6 +132,11 @@ button.operator:active {
   transition: background-color 0.1s;
 }
 
+button.operator.highlight {
+  background-color: rgb(225, 235, 243);
+  transition: background-color 0.1s;
+}
+
 #numbers-container {
   width: 100%;
   display: flex;
@@ -153,6 +163,11 @@ button.number:hover {
 }
 
 button.number:active {
+  background-color: rgb(245, 245, 245);
+  transition: background-color 0.1s;
+}
+
+button.number.highlight {
   background-color: rgb(245, 245, 245);
   transition: background-color 0.1s;
 }
@@ -201,6 +216,11 @@ button.number.equals:hover {
 }
 
 button.number.equals:active {
+  background-color: rgb(225, 235, 243);
+  transition: background-color 0.1s;
+}
+
+button.number.equals.highlight {
   background-color: rgb(225, 235, 243);
   transition: background-color 0.1s;
 }
