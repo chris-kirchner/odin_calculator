@@ -42,8 +42,8 @@ for (let i = 0; i < allButtons.length; i++) {
 window.addEventListener("keydown", buttonClick);
 window.addEventListener("keydown", addKeyHighlight);
 
+// Add button highlight class on keydown event
 function addKeyHighlight(e) {
-  console.log(e);
   for (let i = 0; i < allButtons.length; i++) {
     if (allButtons[i].innerText === e.key) {
       allButtons[i].classList.add("highlight");
@@ -58,6 +58,7 @@ function addKeyHighlight(e) {
   setTimeout(removeKeyHighlight, 100);
 };
 
+// Remove button highlight class after keydown event
 function removeKeyHighlight() {
   for (let i = 0; i < allButtons.length; i++) {
     allButtons[i].classList.remove("highlight");
@@ -70,16 +71,16 @@ let num2 = null;
 let numEntered = 0;
 let decimalEntered = 0;
 let answer = 0;
-let regEx = /\d+/g;
+let negativeNum = 0;
+// let regEx = /\d+/g;
 let numRegEx = /[^.]+/g;
-let nonDigitRegEx = /\D+/g;
 let allNumRegEx = /[0-9,.]+/g;
 let exponentialRegEx = /[e][+-]/g;
 let displayPadding = 12;
 let savedNum = "0";
 display2.style.fontSize = "70px";
 
-
+// Scale display2 (larger text) font size to fit within displayContainer
 function display2FontScale() {
   if (display2.clientWidth <= displayContainer.clientWidth - displayPadding) {
     display2.style.fontSize = "70px";
@@ -93,6 +94,7 @@ function display2FontScale() {
   }
 };
 
+// Scale display1 (smaller text) font size to fit within displayContainer
 function display1FontScale() {
   if (display1.clientWidth <= displayContainer.clientWidth - displayPadding) {
     display1.style.fontSize = "20px";
@@ -106,13 +108,15 @@ function display1FontScale() {
   }
 };
 
+// Insert commas into user entered numbers when appropriate
 function commaInsert(num) {
   // console.log(num);
   // console.log(typeof num);
   if (num.match(allNumRegEx)) {
+    console.log("num =", num.match(allNumRegEx));
     // console.log("num =", num);
     let fullNum = num.match(numRegEx);
-    // console.log("fullNum =", fullNum);
+    console.log("fullNum =", fullNum);
     let numWhole = fullNum[0];
     let numFraction = null;
     if (fullNum[1]) {
@@ -137,6 +141,15 @@ function commaInsert(num) {
         savedNum = parseFloat(numWhole);
       }
       
+      if (numWhole[0] === "-") {
+        x = numWhole.split("");
+        x.splice(0, 1);
+        numWhole = x.join("");
+        negativeNum = 1;
+      }
+
+      console.log("negativeNum =", negativeNum);
+
       if (numWhole.match(exponentialRegEx)) {
       }
       else {
@@ -163,6 +176,13 @@ function commaInsert(num) {
         numWhole = x.join("");
       }
 
+      if (negativeNum) {
+        x = numWhole.split("");
+        x.unshift("-");
+        numWhole = x.join("");
+        negativeNum = 0;
+      }
+
       if (decimalEntered === 1 && !numFraction) {
         // console.log("decimal entered");
       }
@@ -186,11 +206,12 @@ function commaInsert(num) {
     // console.log("savedNum:", savedNum);
     // console.log("=================================");
   }
-  // console.log(num);
+  console.log(num);
   // console.log("=================================");
   return num;
 };
 
+// Handles all actions taken when user presses a valid key or clicks on any button
 function buttonClick(e) {
   let button = "";
   if (e.key) {
