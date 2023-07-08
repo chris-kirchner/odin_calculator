@@ -1,5 +1,11 @@
 html {
-  background-color: rgb(104, 104, 104);
+  height: 100%;
+  /* background-color: rgb(104, 104, 104); */
+  /* background-image: linear-gradient(45deg, rgb(196, 171, 117), rgb(137, 105, 141)); */
+  /* background-image: linear-gradient(45deg, rgb(146, 114, 119), rgb(118, 105, 141)); */
+  /* background-image: linear-gradient(45deg, rgb(194, 180, 149), rgb(148, 121, 127)); */
+  background-image: linear-gradient(45deg, rgb(117, 146, 146), rgb(96, 75, 100));
+  /* background-image: linear-gradient(45deg, rgb(106, 138, 153), rgb(138, 194, 177)); */
 }
 
 #calculator-container {
@@ -16,7 +22,7 @@ html {
   width: 400px;
   background-color: rgb(194, 194, 194);
   border-radius: 5px;
-  box-shadow: 0px 80px 80px rgba(0, 0 , 0, 15%);
+  box-shadow: 0px 100px 100px rgba(0, 0 , 0, 10%);
 }
 
 #display-container {
@@ -25,12 +31,12 @@ html {
   align-items: flex-end;
   /* justify-content: space-between; */
   /* height: 15%; */
-  width: 90%;
-  padding: 6px 6px 10px 6px;
+  width: 89%;
+  padding: 6px 6px 16px 6px;
   font-family: Arial, sans-serif;
   color: rgb(88, 88, 88);
   background-color: rgb(158, 158, 158);
-  margin-top: 12px;
+  margin-top: 20px;
 }
 
 #display1 {
@@ -59,23 +65,24 @@ html {
 #buttons-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 94%;
+  /* align-items: center; */
+  height: 78%;
+  width: 92%;
 }
 
 #functions-container {
   width: 100%;
+  height: 20%;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   justify-content: space-between;
-  gap: 4px;
-  margin: 16px 0px 5px 0px;
+  /* gap: 6px; */
+  margin: 16px 0px 3px 0px;
 }
 
 button.function {
   text-align: center;
-  flex: 1;
-  height: 40px;
+  flex: 0 1 49.5%;
   font-size: 30px;
   font-weight: 500;
   border: 1px solid rgb(155, 155, 155);
@@ -104,17 +111,15 @@ button.function.highlight {
 
 #operators-container {
   width: 100%;
+  height: 20%;
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  gap: 4px;
-  margin: 0px 0px 5px 0px;
+  margin: 0px 0px 3px 0px;
 }
 
 button.operator {
   text-align: center;
-  flex: 1;
-  height: 40px;
+  flex: 0 1 24.2%;
   font-size: 30px;
   font-weight: 500;
   border: 1px solid rgb(155, 155, 155);
@@ -139,10 +144,10 @@ button.operator.highlight {
 
 #numbers-container {
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: space-between;
-  /* gap: 6px; */
-  row-gap: 6px;
+  row-gap: 1%;
   flex-wrap: wrap-reverse;
 }
 
@@ -150,7 +155,8 @@ button.number {
   font-family: sans-serif;
   font-size: 40px;
   font-weight: 500;
-  width: 32%;
+  flex: 0 1 32.5%;
+  /* width: 32%; */
   border: 1px solid rgb(155, 155, 155);
   color: rgb(71, 71, 71);
   background-color:rgb(214, 214, 214);
@@ -179,13 +185,12 @@ button {
 
 #decimal-container {
   display: flex;
-  width: 32%;
+  width: 32.5%;
   justify-content: space-between;
-  gap: 4px;
 }
 
 #decimal-container button.number {
-  flex: 1;
+  flex: 0 1 48%;
 }
 
 button.number.positive-negative {
