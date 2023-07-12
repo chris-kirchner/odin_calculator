@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="theme-dark">
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="style.css">
@@ -9,41 +9,49 @@
 <body>
   <div id="calculator-container">
     <div id="calculator-base">
+
+      <div id="title-bar-container">
+        <div id="title">Calculator</div>
+        <div id="theme-selector"></div>
+      </div>
       
       <div id="display-container">
         <div id="display1"></div>
         <div id="display2">0</div>
       </div>
       
-      <div id="buttons-container">
-        <div id="functions-container">
-          <button class="function backspace">Backspace</button>
-          <button class="function clear">C</button>
-        </div>
-        <div id="operators-container">
-          <button class="operator">+</button>
-          <button class="operator">-</button>
-          <button class="operator">*</button>
-          <button class="operator">/</button>
-        </div>
-        <div id="numbers-container">
-          <button class="number">0</button>
-          <div id="decimal-container">
-            <button class="number decimal">.</button>
-            <button class="number positive-negative">+/-</button>
+      <div id="buttons-main-container">
+    
+        <div id="buttons-container">
+          <div id="functions-container">
+            <button class="function backspace">Backspace</button>
+            <button class="function clear">C</button>
           </div>
-          <button class="number equals">=</button>
-          <button class="number">1</button>
-          <button class="number">2</button>
-          <button class="number">3</button>
-          <button class="number">4</button>
-          <button class="number">5</button>
-          <button class="number">6</button>
-          <button class="number">7</button>
-          <button class="number">8</button>
-          <button class="number">9</button>
+          <div id="numbers-container">
+            <button class="number positive-negative">+/-</button>
+            <button class="number">0</button>
+            <button class="number decimal">.</button>
+            <button class="number">1</button>
+            <button class="number">2</button>
+            <button class="number">3</button>
+            <button class="number">4</button>
+            <button class="number">5</button>
+            <button class="number">6</button>
+            <button class="number">7</button>
+            <button class="number">8</button>
+            <button class="number">9</button>
+          </div>
+        </div>
+        
+        <div id="operators-container">
+          <button class="operator">/</button>
+          <button class="operator">*</button>
+          <button class="operator">-</button>
+          <button class="operator">+</button>
+          <button class="operator equals">=</button>
         </div>
       </div>
+      
 
     </div>
   </div>
