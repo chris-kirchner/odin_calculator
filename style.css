@@ -1,11 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 html {
   height: 100%;
   /* background-color: rgb(104, 104, 104); */
-  /* background-image: linear-gradient(45deg, rgb(196, 171, 117), rgb(137, 105, 141)); */
   /* background-image: linear-gradient(45deg, rgb(146, 114, 119), rgb(118, 105, 141)); */
-  /* background-image: linear-gradient(45deg, rgb(194, 180, 149), rgb(148, 121, 127)); */
-  background-image: linear-gradient(45deg, rgb(117, 146, 146), rgb(96, 75, 100));
-  /* background-image: linear-gradient(45deg, rgb(106, 138, 153), rgb(138, 194, 177)); */
+  /* background-image: linear-gradient(45deg, rgb(117, 146, 146), rgb(96, 75, 100)); */
+  /* background-image: linear-gradient(45deg, rgb(70, 149, 206), rgb(196, 145, 206)); */
+  background-image: linear-gradient(45deg, rgb(77, 82, 88), rgb(134, 144, 156));
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: var(--font-color);
+}
+
+/* .theme-dark {
+  --color-base: rgb(36, 41, 51);
+  --color-button: rgb(54, 62, 76);
+  --color-button-hover: rgb(65, 74, 90);
+  --color-button-active: rgb(97, 105, 119);
+  --color-equals: rgb(16, 103, 165);
+  --color-equals-hover: rgb(34, 128, 196);
+  --color-equals-active: rgb(96, 175, 231);
+  --color-theme-selector: rgb(68, 77, 92);
+  --color-theme-selector-hover: rgb(207, 207, 207);
+  --color-theme-selector-active: rgb(245, 245, 245);
+  --font-color: rgb(207, 207, 207);
+} */
+
+.theme-dark {
+  --color-base: rgb(36, 41, 51);
+  --color-button: rgb(54, 62, 76);
+  --color-button-hover: rgb(65, 74, 90);
+  --color-button-active: rgb(97, 105, 119);
+  /* --color-equals: rgb(16, 103, 165);
+  --color-equals-hover: rgb(34, 128, 196);
+  --color-equals-active: rgb(96, 175, 231); */
+  --color-equals: rgb(31, 134, 207);
+  --color-equals-hover: rgb(88, 168, 224);
+  --color-equals-active: rgb(139, 196, 236);
+  --color-theme-selector: rgb(68, 77, 92);
+  --color-theme-selector-hover: rgb(207, 207, 207);
+  --color-theme-selector-active: rgb(245, 245, 245);
+  --font-color: rgb(207, 207, 207);
+}
+
+.theme-light {
+  --color-base: rgb(196, 196, 196);
+  --color-button: rgb(223, 223, 223);
+  --color-button-hover: rgb(238, 238, 238);
+  --color-button-active: rgb(255, 255, 255);
+  --color-equals: rgb(31, 134, 207);
+  --color-equals-hover: rgb(88, 168, 224);
+  --color-equals-active: rgb(139, 196, 236);
+  --color-theme-selector: rgb(238, 238, 238);
+  --color-theme-selector-hover: rgb(68, 77, 92);
+  --color-theme-selector-active: rgb(24, 27, 34);
+  --font-color: rgb(54, 62, 76);
 }
 
 #calculator-container {
@@ -18,214 +69,167 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 600px;
+  height: 680px;
   width: 400px;
-  background-color: rgb(194, 194, 194);
-  border-radius: 5px;
-  box-shadow: 0px 100px 100px rgba(0, 0 , 0, 10%);
+  box-shadow: 0px 150px 150px rgba(0, 0 , 0, 20%);
+  background-color: var(--color-base);
+  border-radius: 20px;
+  transition: background-color 0.5s;
+}
+
+#title-bar-container {
+  display: flex;
+  width: 88%;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+}
+
+#theme-selector {
+  border-radius: 100px;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-theme-selector);
+  transition: background-color 0.5s;
+}
+
+#theme-selector:hover {
+  background-color: var(--color-theme-selector-hover);
+  transition: background-color 0.5s;
+}
+
+#theme-selector:active {
+  background-color: var(--color-theme-selector-active);
+  transition: background-color 0.1s;
+}
+
+#title-bar-container #title {
+  font-size: 25px;
+  font-weight: 600;
+  letter-spacing: .05ch;
 }
 
 #display-container {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  /* justify-content: space-between; */
-  /* height: 15%; */
-  width: 89%;
-  padding: 6px 6px 16px 6px;
-  font-family: Arial, sans-serif;
-  color: rgb(88, 88, 88);
-  background-color: rgb(158, 158, 158);
-  margin-top: 20px;
+  width: 100%;
+  padding: 0px 0px 32px 0px;
 }
 
 #display1 {
-  line-height: 15px;
-  height: 14px;
-  font-size: 20px;
-  font-weight: 600;
-  letter-spacing: .02ch;
-  padding-right: 6px;
-  color: rgb(107, 107, 107);
-  /* background-color: lime; */
-  /* max-width: 360px; */
+  line-height: 17px;
+  height: 20px;
+  font-weight: 400;
+  letter-spacing: .03ch;
+  padding: 10px 30px;
   white-space: nowrap;
 }
 
 #display2 {
   line-height: 60px;
   max-height: 55px;
-  font-size: 70px;
   font-weight: 800;
-  letter-spacing: .05ch;
-  /* background-color: rgba(255, 192, 203, 0.26); */
+  letter-spacing: .03ch;
   white-space: nowrap;
+  padding: 0px 24px;
+}
+
+button {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  padding: 0;
+  border: 0;
+  color: var(--font-color);
+  background-color: var(--color-button);
+  transition: background-color 0.5s;
+}
+
+button:hover {
+  background-color: var(--color-button-hover);
+  transition: background-color 0.7s;
+}
+
+button:active, button.highlight {
+  background-color:var(--color-button-active);
+  transition: background-color 0.1s;
+}
+
+#buttons-main-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-button);
+  background-color: pink;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
 }
 
 #buttons-container {
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  height: 78%;
-  width: 92%;
+  min-width: 75%;
 }
 
 #functions-container {
-  width: 100%;
-  height: 20%;
+  min-height: 20%;
   display: flex;
-  /* flex-wrap: wrap; */
   justify-content: space-between;
-  /* gap: 6px; */
-  margin: 16px 0px 3px 0px;
+  margin: 0px;
 }
 
 button.function {
-  text-align: center;
-  flex: 0 1 49.5%;
+  max-width: 50%;
   font-size: 30px;
-  font-weight: 500;
-  border: 1px solid rgb(155, 155, 155);
-  background-color: rgb(211, 205, 195);
-  transition: background-color 0.7s;
+  flex: 1;
 }
 
 button.function.backspace {
-  font-size: min(8vw, 30px);
-}
-
-button.function:hover {
-  background-color: rgb(224, 218, 207);
-  transition: background-color 0.3s;
-}
-
-button.function:active {
-  background-color: rgb(233, 227, 215);
-  transition: background-color 0.1s;
-}
-
-button.function.highlight {
-  background-color: rgb(233, 227, 215);
-  transition: background-color 0.1s;
-}
-
-#operators-container {
-  width: 100%;
-  height: 20%;
-  display: flex;
-  justify-content: space-between;
-  margin: 0px 0px 3px 0px;
-}
-
-button.operator {
-  text-align: center;
-  flex: 0 1 24.2%;
-  font-size: 30px;
-  font-weight: 500;
-  border: 1px solid rgb(155, 155, 155);
-  background-color: rgb(200, 209, 216);
-  transition: background-color 0.7s;
-}
-
-button.operator:hover {
-  background-color: rgb(215, 225, 233);
-  transition: background-color 0.3s;
-}
-
-button.operator:active {
-  background-color: rgb(225, 235, 243);
-  transition: background-color 0.1s;
-}
-
-button.operator.highlight {
-  background-color: rgb(225, 235, 243);
-  transition: background-color 0.1s;
+  font-size: min(5vw, 22px);
 }
 
 #numbers-container {
-  width: 100%;
-  height: 100%;
   display: flex;
-  justify-content: space-between;
-  row-gap: 1%;
   flex-wrap: wrap-reverse;
+  height: 80%;
 }
 
 button.number {
-  font-family: sans-serif;
   font-size: 40px;
-  font-weight: 500;
-  flex: 0 1 32.5%;
-  /* width: 32%; */
-  border: 1px solid rgb(155, 155, 155);
-  color: rgb(71, 71, 71);
-  background-color:rgb(214, 214, 214);
-  transition: background-color 0.7s;
-}
-
-button.number:hover {
-  background-color: rgb(230, 230, 230);
-  transition: background-color 0.3s;
-}
-
-button.number:active {
-  background-color: rgb(245, 245, 245);
-  transition: background-color 0.1s;
-}
-
-button.number.highlight {
-  background-color: rgb(245, 245, 245);
-  transition: background-color 0.1s;
-}
-
-button {
-  border-radius: 4px;
-  padding: 0;
-}
-
-#decimal-container {
-  display: flex;
-  width: 32.5%;
-  justify-content: space-between;
-}
-
-#decimal-container button.number {
-  flex: 0 1 48%;
+  min-width: 33.3%;
+  max-height: 25%;
+  flex: 1;
 }
 
 button.number.positive-negative {
-  background-color: rgb(200, 209, 216);
-  transition: background-color 0.7s;
   white-space: nowrap;
-  font-size: min(8vw, 30px);
+  width: 33.33%;
+  font-size: min(12vw, 30px);
+  border-bottom-left-radius: 20px;
 }
 
-button.number.positive-negative:hover {
-  background-color: rgb(215, 225, 233);
-  transition: background-color 0.3s;
+#operators-container {
+  min-width: 25%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
 }
 
-button.number.positive-negative:active {
-  background-color: rgb(225, 235, 243);
-  transition: background-color 0.1s;
+button.operator {
+  flex: 1;
+  font-size: 30px;
 }
 
-button.number.equals {
-  background-color: rgb(200, 209, 216);
-  transition: background-color 0.7s;
+button.operator.equals {
+  background-color: var(--color-equals);
+  border-bottom-right-radius: 20px;
 }
 
-button.number.equals:hover {
-  background-color: rgb(215, 225, 233);
-  transition: background-color 0.3s;
+button.operator.equals:hover {
+  background-color: var(--color-equals-hover);
 }
 
-button.number.equals:active {
-  background-color: rgb(225, 235, 243);
-  transition: background-color 0.1s;
-}
-
-button.number.equals.highlight {
-  background-color: rgb(225, 235, 243);
-  transition: background-color 0.1s;
+button.operator.equals:active, button.operator.equals.highlight {
+  background-color: var(--color-equals-active);
 }
