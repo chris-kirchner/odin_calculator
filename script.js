@@ -32,6 +32,21 @@ function operate(operator, num1, num2) {
   };
 };
 
+
+let themeSelector = document.getElementById("theme-selector");
+themeSelector.addEventListener("click", themeToggle);
+
+function themeToggle() {
+  let htmlElement = document.getElementsByTagName("html");
+  if (htmlElement[0].classList[0] === "theme-dark") {
+    htmlElement[0].classList = "theme-light";
+  }
+  else {
+    htmlElement[0].classList = "theme-dark";
+  }
+};
+
+
 let displayContainer = document.getElementById("display-container");
 let display1 = document.getElementById("display1");
 let display2 = document.getElementById("display2");
@@ -76,17 +91,17 @@ let negativeNum = 0;
 let numRegEx = /[^.]+/g;
 let allNumRegEx = /[0-9,.]+/g;
 let exponentialRegEx = /[e][+-]/g;
-let displayPadding = 12;
+let displayPadding = 0;
 let savedNum = "0";
-display2.style.fontSize = "70px";
+display2.style.fontSize = "80px";
 
 // Scale display2 (larger text) font size to fit within displayContainer
 function display2FontScale() {
   if (display2.clientWidth <= displayContainer.clientWidth - displayPadding) {
-    display2.style.fontSize = "70px";
+    display2.style.fontSize = "80px";
   }
   if (display2.clientWidth > displayContainer.clientWidth - displayPadding) {
-    let display2FontSize = 70;
+    let display2FontSize = 80;
     while (display2.clientWidth > displayContainer.clientWidth - displayPadding) {
       display2FontSize -= 1;
       display2.style.fontSize = display2FontSize + "px";
@@ -97,10 +112,10 @@ function display2FontScale() {
 // Scale display1 (smaller text) font size to fit within displayContainer
 function display1FontScale() {
   if (display1.clientWidth <= displayContainer.clientWidth - displayPadding) {
-    display1.style.fontSize = "20px";
+    display1.style.fontSize = "22px";
   }
   if (display1.clientWidth > displayContainer.clientWidth - displayPadding) {
-    let display1FontSize = 20;
+    let display1FontSize = 22;
     while (display1.clientWidth > displayContainer.clientWidth - displayPadding) {
       display1FontSize -= 1;
       display1.style.fontSize = display1FontSize + "px";
@@ -113,10 +128,10 @@ function commaInsert(num) {
   // console.log(num);
   // console.log(typeof num);
   if (num.match(allNumRegEx)) {
-    console.log("num =", num.match(allNumRegEx));
+    // console.log("num =", num.match(allNumRegEx));
     // console.log("num =", num);
     let fullNum = num.match(numRegEx);
-    console.log("fullNum =", fullNum);
+    // console.log("fullNum =", fullNum);
     let numWhole = fullNum[0];
     let numFraction = null;
     if (fullNum[1]) {
@@ -148,7 +163,7 @@ function commaInsert(num) {
         negativeNum = 1;
       }
 
-      console.log("negativeNum =", negativeNum);
+      // console.log("negativeNum =", negativeNum);
 
       if (numWhole.match(exponentialRegEx)) {
       }
@@ -206,7 +221,7 @@ function commaInsert(num) {
     // console.log("savedNum:", savedNum);
     // console.log("=================================");
   }
-  console.log(num);
+  // console.log(num);
   // console.log("=================================");
   return num;
 };
@@ -242,6 +257,7 @@ function buttonClick(e) {
       let numbers = display2.innerText.split("");
       numbers.pop();
       display2.innerText = numbers.join("");
+      numEntered = 1;
     } 
   }
 
@@ -263,11 +279,11 @@ function buttonClick(e) {
   if (button === "+" || button === "-" || button === "*" || button === "/") {
     if (operator !== "" & answer === 0 && numEntered === 0) {
       operator = button;
-      display1.innerText = `${num1} ${operator}`;
+      display1.innerText = `${commaInsert(num1.toString())} ${operator}`;
     }
     else if (operator !== "" && answer === 0) {
       num2 = parseFloat(savedNum);
-      display1.innerText = ` ${operate(operator, num1, num2)} ${button}`;
+      display1.innerText = ` ${commaInsert(operate(operator, num1, num2).toString())} ${button}`;
       display2.innerText = operate(operator, num1, num2);
       num1 = parseFloat(savedNum);
       operator = button;
@@ -282,7 +298,7 @@ function buttonClick(e) {
     }
     else {
       num1 = parseFloat(savedNum);
-      // console.log(num1);
+      console.log(num1);
       operator = button;
       display1.innerText = `${display2.innerText} ${operator}`;
       decimalEntered = 0;
@@ -311,7 +327,7 @@ function buttonClick(e) {
   }
   else if ((button === "=" || button === "Enter") && operator !== "" && answer === 1) {
     num1 = parseFloat(savedNum);
-    display1.innerText = `${commaInsert((num1.toString()))} ${operator} ${commaInsert((num2.toString()))} =`;
+    display1.innerText = `${commaInsert(num1.toString())} ${operator} ${commaInsert(num2.toString())} =`;
     display2.innerText = operate(operator, num1, num2);
     numEntered = 0;
   }
