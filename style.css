@@ -3,15 +3,15 @@
 html {
   height: 100%;
   /* background-color: rgb(104, 104, 104); */
-  /* background-image: linear-gradient(45deg, rgb(146, 114, 119), rgb(118, 105, 141)); */
-  /* background-image: linear-gradient(45deg, rgb(117, 146, 146), rgb(96, 75, 100)); */
-  /* background-image: linear-gradient(45deg, rgb(70, 149, 206), rgb(196, 145, 206)); */
-  background-image: linear-gradient(45deg, rgb(77, 82, 88), rgb(134, 144, 156));
+  /* background-image: linear-gradient(45deg, rgb(60, 42, 71), rgb(146, 114, 119)); */
+  background-image: linear-gradient(45deg, rgb(86, 78, 90), rgb(167, 154, 161));
+  /* background-image: linear-gradient(45deg, rgb(70, 73, 82), rgb(153, 161, 173)); */
 }
 
 body {
   font-family: 'Roboto', sans-serif;
   color: var(--font-color);
+  transition: color 0.5s;
 }
 
 /* .theme-dark {
@@ -142,7 +142,7 @@ button {
   border: 0;
   color: var(--font-color);
   background-color: var(--color-button);
-  transition: background-color 0.5s;
+  transition: background-color 0.5s, color 0.5s;
 }
 
 button:hover {
@@ -197,16 +197,22 @@ button.function.backspace {
 
 button.number {
   font-size: 40px;
+  font-weight: 500;
   min-width: 33.3%;
   max-height: 25%;
   flex: 1;
 }
 
 button.number.positive-negative {
+  font-weight: 400;
   white-space: nowrap;
   width: 33.33%;
   font-size: min(12vw, 30px);
   border-bottom-left-radius: 20px;
+}
+
+button.number.decimal {
+  font-weight: 400;
 }
 
 #operators-container {
@@ -218,10 +224,11 @@ button.number.positive-negative {
 
 button.operator {
   flex: 1;
-  font-size: 30px;
+  font-size: 32px;
 }
 
 button.operator.equals {
+  font-weight: 500;
   background-color: var(--color-equals);
   border-bottom-right-radius: 20px;
 }
