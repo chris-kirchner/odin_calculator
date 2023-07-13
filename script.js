@@ -18,13 +18,13 @@ function operate(operator, num1, num2) {
   if (operator === "+") {
     return add(num1, num2);
   }
-  else if (operator === "-") {
+  else if (operator === "−") {
     return subtract(num1, num2);
   }
-  else if (operator === "*") {
+  else if (operator === "×") {
     return multiply(num1, num2);
   }
-  else if (operator === "/") {
+  else if (operator === "÷") {
     return divide(num1, num2);
   }
   else {
@@ -236,6 +236,19 @@ function buttonClick(e) {
     button = e.target.innerText;
   }
 
+  if (button === "+") {
+    button = "+";
+  }
+  else if (button === "-") {
+    button = "−";
+  }
+  else if (button === "*") {
+    button = "×";
+  }
+  else if (button === "/") {
+    button = "÷";
+  }
+
   if (button === "C" || button === "c") {
     display1.innerText = "";
     display2.innerText = 0;
@@ -261,7 +274,7 @@ function buttonClick(e) {
     } 
   }
 
-  if (button === "+/-") {
+  if (button === "+/−") {
     if (parseFloat(display2.innerText) > 0) {
       let number = display2.innerText.split("");
       number.unshift("-");
@@ -276,7 +289,7 @@ function buttonClick(e) {
     }
   }
 
-  if (button === "+" || button === "-" || button === "*" || button === "/") {
+  if (button === "+" || button === "−" || button === "×" || button === "÷") {
     if (operator !== "" & answer === 0 && numEntered === 0) {
       operator = button;
       display1.innerText = `${commaInsert(num1.toString())} ${operator}`;
@@ -298,7 +311,7 @@ function buttonClick(e) {
     }
     else {
       num1 = parseFloat(savedNum);
-      console.log(num1);
+      // console.log(num1);
       operator = button;
       display1.innerText = `${display2.innerText} ${operator}`;
       decimalEntered = 0;
