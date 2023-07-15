@@ -232,8 +232,11 @@ function buttonClick(e) {
   if (e.key) {
     button = e.key;
   }
-  else {
+  else if (e.target.innerText) {
     button = e.target.innerText;
+  }
+  else {
+    button = "Backspace";
   }
 
   if (button === "+") {
