@@ -1,41 +1,16 @@
+/* font import */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+/* font-family: 'Roboto', sans-serif; */
 
-html {
-  height: 100%;
-  /* background-color: rgb(104, 104, 104); */
-  /* background-image: linear-gradient(45deg, rgb(60, 42, 71), rgb(146, 114, 119)); */
-  /* background-image: linear-gradient(45deg, rgb(86, 78, 90), rgb(167, 154, 161)); */
-  background-image: linear-gradient(45deg, rgb(68, 76, 82), rgb(147, 156, 173));
-}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* font-family: 'Noto Sans', sans-serif; */
 
-body {
-  font-family: 'Roboto', sans-serif;
-  color: var(--font-color);
-  transition: color 0.5s;
-}
-
-/* .theme-dark {
-  --color-base: rgb(36, 41, 51);
-  --color-button: rgb(54, 62, 76);
-  --color-button-hover: rgb(65, 74, 90);
-  --color-button-active: rgb(97, 105, 119);
-  --color-equals: rgb(16, 103, 165);
-  --color-equals-hover: rgb(34, 128, 196);
-  --color-equals-active: rgb(96, 175, 231);
-  --color-theme-selector: rgb(68, 77, 92);
-  --color-theme-selector-hover: rgb(207, 207, 207);
-  --color-theme-selector-active: rgb(245, 245, 245);
-  --font-color: rgb(207, 207, 207);
-} */
-
+/* color theme variables */
 .theme-dark {
   --color-base: rgb(36, 41, 51);
   --color-button: rgb(54, 62, 76);
   --color-button-hover: rgb(65, 74, 90);
   --color-button-active: rgb(97, 105, 119);
-  /* --color-equals: rgb(16, 103, 165);
-  --color-equals-hover: rgb(34, 128, 196);
-  --color-equals-active: rgb(96, 175, 231); */
   --color-equals: rgb(31, 134, 207);
   --color-equals-hover: rgb(88, 168, 224);
   --color-equals-active: rgb(139, 196, 236);
@@ -55,25 +30,44 @@ body {
   --color-equals-active: rgb(139, 196, 236);
   --color-theme-selector: rgb(238, 238, 238);
   --color-theme-selector-hover: rgb(68, 77, 92);
-  --color-theme-selector-active: rgb(24, 27, 34);
+  --color-theme-selector-active: rgb(37, 42, 51);
   --font-color: rgb(54, 62, 76);
 }
 
+html {
+  height: 100%;
+  /* background-image: linear-gradient(45deg, rgb(60, 42, 71), rgb(146, 114, 119)); */
+  /* background-image: linear-gradient(45deg, rgb(86, 78, 90), rgb(167, 154, 161)); */
+  background-image: linear-gradient(45deg, rgb(68, 76, 82), rgb(147, 156, 173));
+}
+
+body {
+  /* font-family: 'Roboto', sans-serif; */
+  font-family: 'Noto Sans', sans-serif;
+  color: var(--font-color);
+  transition: color 0.5s;
+}
+
 #calculator-container {
+  height: 90vh;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  flex: 0 1 auto;
 }
 
 #calculator-base {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 680px;
-  width: 400px;
+  /* height: 680px;
+  width: 400px; */
+  height: 720px;
+  width: 440px;
   box-shadow: 0px 150px 150px rgba(0, 0 , 0, 20%);
   background-color: var(--color-base);
-  border-radius: 20px;
+  border-radius: 20px 20px 24px 24px;
   transition: background-color 0.5s;
 }
 
@@ -88,7 +82,7 @@ body {
 #title-bar-container #title {
   font-size: min(12vw, 25px);
   font-weight: 600;
-  letter-spacing: .05ch;
+  letter-spacing: .02ch;
   flex: 0 1 auto;
 }
 
@@ -131,15 +125,17 @@ body {
 #display2 {
   line-height: 60px;
   max-height: 55px;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: .03ch;
   white-space: nowrap;
   padding: 0px 24px;
 }
 
 button {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Noto Sans', sans-serif;
   font-weight: 400;
+  text-align: center;
+  line-height: 0;
   padding: 0;
   border: 0;
   color: var(--font-color);
@@ -163,9 +159,8 @@ button:active, button.highlight {
   width: 100%;
   height: 100%;
   background-color: var(--color-button);
-  /* background-color: pink; */
-  border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 24px;
+  border-bottom-left-radius: 24px;
 }
 
 #buttons-container {
@@ -184,9 +179,6 @@ button:active, button.highlight {
 button.function {
   max-width: 50%;
   font-size: 30px;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
   flex: 1;
 }
 
@@ -212,7 +204,7 @@ button.number.positive-negative {
   font-weight: 400;
   white-space: nowrap;
   width: 33.33%;
-  font-size: min(12vw, 30px);
+  font-size: min(12vw, 28px);
   border-bottom-left-radius: 20px;
 }
 
