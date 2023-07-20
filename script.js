@@ -28,11 +28,11 @@ function operate(operator, num1, num2) {
     return divide(num1, num2);
   }
   else {
-    return "Error";
+    return "operate error";
   };
 };
 
-
+// Dark/light theme selection
 let themeSelector = document.getElementById("theme-selector");
 themeSelector.addEventListener("click", themeToggle);
 
@@ -46,14 +46,17 @@ function themeToggle() {
   }
 };
 
-
 let displayContainer = document.getElementById("display-container");
 let display1 = document.getElementById("display1");
 let display2 = document.getElementById("display2");
 let allButtons = document.getElementsByTagName("button");
+
+// Mouse click event listener for all buttons
 for (let i = 0; i < allButtons.length; i++) {
   allButtons[i].addEventListener("click", buttonClick);
-}
+};
+
+// Keyboard keydown event listeners
 window.addEventListener("keydown", buttonClick);
 window.addEventListener("keydown", addKeyHighlight);
 
@@ -87,22 +90,21 @@ let numEntered = 0;
 let decimalEntered = 0;
 let answer = 0;
 let negativeNum = 0;
-// let regEx = /\d+/g;
 let numRegEx = /[^.]+/g;
+let commaRegEx = /[,]+/g;
 let allNumRegEx = /[0-9,.]+/g;
 let exponentialRegEx = /[e][+-]/g;
-let displayPadding = 0;
 let savedNum = "0";
 display2.style.fontSize = "80px";
 
 // Scale display2 (larger text) font size to fit within displayContainer
 function display2FontScale() {
-  if (display2.clientWidth <= displayContainer.clientWidth - displayPadding) {
+  if (display2.clientWidth <= displayContainer.clientWidth) {
     display2.style.fontSize = "80px";
   }
-  if (display2.clientWidth > displayContainer.clientWidth - displayPadding) {
+  if (display2.clientWidth > displayContainer.clientWidth) {
     let display2FontSize = 80;
-    while (display2.clientWidth > displayContainer.clientWidth - displayPadding) {
+    while (display2.clientWidth > displayContainer.clientWidth) {
       display2FontSize -= 1;
       display2.style.fontSize = display2FontSize + "px";
     }
@@ -111,33 +113,31 @@ function display2FontScale() {
 
 // Scale display1 (smaller text) font size to fit within displayContainer
 function display1FontScale() {
-  if (display1.clientWidth <= displayContainer.clientWidth - displayPadding) {
+  if (display1.clientWidth <= displayContainer.clientWidth) {
     display1.style.fontSize = "22px";
   }
-  if (display1.clientWidth > displayContainer.clientWidth - displayPadding) {
+  if (display1.clientWidth > displayContainer.clientWidth) {
     let display1FontSize = 22;
-    while (display1.clientWidth > displayContainer.clientWidth - displayPadding) {
+    while (display1.clientWidth > displayContainer.clientWidth) {
       display1FontSize -= 1;
       display1.style.fontSize = display1FontSize + "px";
     }
   }
 };
 
-// Insert commas into user entered numbers when appropriate
+// Insert commas into integers where appropriate (for use in display1 and display2)
 function commaInsert(num) {
-  // console.log(num);
-  // console.log(typeof num);
   if (num.match(allNumRegEx)) {
-    // console.log("num =", num.match(allNumRegEx));
-    // console.log("num =", num);
     let fullNum = num.match(numRegEx);
-    // console.log("fullNum =", fullNum);
     let numWhole = fullNum[0];
     let numFraction = null;
+
+    // If number is fractional, copy fraction part (index 1) to numFraction
     if (fullNum[1]) {
       numFraction = fullNum[1];
     }
-    
+
+    // If numWhole contains commas, remove them and resave string to numWhole
     if (numWhole) {
       let x = [];
       for (let i = 0; i < numWhole.length; i++) {
@@ -147,8 +147,8 @@ function commaInsert(num) {
           numWhole = x.join("");
         }
       }
-      // console.log("numWhole =", numWhole);
-
+      // If number was fractional, rejoin the integer with the fractional number as a float
+      // Save float to savedNum for later use
       if (numFraction) {
         savedNum = parseFloat(numWhole + "." + numFraction);
       }
@@ -156,6 +156,7 @@ function commaInsert(num) {
         savedNum = parseFloat(numWhole);
       }
       
+      // If first element of numWhole is a minus symbol (negative number), remove it
       if (numWhole[0] === "-") {
         x = numWhole.split("");
         x.splice(0, 1);
@@ -163,34 +164,27 @@ function commaInsert(num) {
         negativeNum = 1;
       }
 
-      // console.log("negativeNum =", negativeNum);
-
+      // If numWhole is an exponential number, (i.e. 123e+45) do nothing
+      // Else splice in a comma after every 3 index positions
       if (numWhole.match(exponentialRegEx)) {
       }
       else {
         x = numWhole.split("");
-
-        if (x.length > 18) {
-          x.splice(-18, 0, ",");
-        }
-        if (x.length > 15) {
-          x.splice(-15, 0, ",");
-        }
-        if (x.length > 12) {
-          x.splice(-12, 0, ",");
-        }
-        if (x.length > 9) {
-          x.splice(-9, 0, ",");
-        }
-        if (x.length > 6) {
-          x.splice(-6, 0, ",");
-        }
         if (x.length > 3) {
-          x.splice(-3, 0, ",");
-        }
+          for (let i = -(x.length - 1); i < 0; i++) {
+            if (i % 3 === 0) {
+              x.splice(i, 0, ",");
+              console.log(x);
+            }
+            else {
+              continue;
+            }
+          }
+        };
         numWhole = x.join("");
       }
 
+      // If numWhole was a negative number, re-insert the minus symbol
       if (negativeNum) {
         x = numWhole.split("");
         x.unshift("-");
@@ -198,31 +192,22 @@ function commaInsert(num) {
         negativeNum = 0;
       }
 
+      // If number was fractional, combine numWhole and numFraction and save to num
+      // Else save only numWhole
       if (decimalEntered === 1 && !numFraction) {
-        // console.log("decimal entered");
       }
       else if (decimalEntered === 1 && numFraction) {
-        // console.log("Fractional number");
         num = `${numWhole}.${numFraction}`;
       }
       else if (decimalEntered === 0 && !numFraction) {
-        // console.log("Whole number");
         num = `${numWhole}`;
       }
 
       if (answer === 1 && numFraction) {
-        // console.log("Fractional number as answer");
         num = `${numWhole}.${numFraction}`;
       }
     }
-    // console.log("numWhole:", numWhole);
-    // console.log("numFraction:", numFraction);
-    // console.log(`${numWhole}.${numFraction}`);
-    // console.log("savedNum:", savedNum);
-    // console.log("=================================");
   }
-  // console.log(num);
-  // console.log("=================================");
   return num;
 };
 
@@ -314,7 +299,6 @@ function buttonClick(e) {
     }
     else {
       num1 = parseFloat(savedNum);
-      // console.log(num1);
       operator = button;
       display1.innerText = `${display2.innerText} ${operator}`;
       decimalEntered = 0;
