@@ -5,7 +5,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 /* font-family: 'Noto Sans', sans-serif; */
 
-/* color theme variables */
 .theme-dark {
   --color-base: rgb(36, 41, 51);
   --color-button: rgb(54, 62, 76);
@@ -36,13 +35,10 @@
 
 html {
   height: 100%;
-  /* background-image: linear-gradient(45deg, rgb(60, 42, 71), rgb(146, 114, 119)); */
-  /* background-image: linear-gradient(45deg, rgb(86, 78, 90), rgb(167, 154, 161)); */
   background-image: linear-gradient(45deg, rgb(68, 76, 82), rgb(147, 156, 173));
 }
 
 body {
-  /* font-family: 'Roboto', sans-serif; */
   font-family: 'Noto Sans', sans-serif;
   color: var(--font-color);
   transition: color 0.5s;
@@ -61,8 +57,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* height: 680px;
-  width: 400px; */
   height: 720px;
   width: 440px;
   box-shadow: 0px 150px 150px rgba(0, 0 , 0, 20%);
@@ -118,17 +112,16 @@ body {
   height: 20px;
   font-weight: 400;
   letter-spacing: .03ch;
-  padding: 10px 30px;
   white-space: nowrap;
+  padding: 10px 28px;
 }
 
 #display2 {
   line-height: 60px;
-  max-height: 55px;
   font-weight: 700;
   letter-spacing: .03ch;
   white-space: nowrap;
-  padding: 0px 24px;
+  padding: 0px 26px;
 }
 
 button {
@@ -178,7 +171,7 @@ button:active, button.highlight {
 
 button.function {
   max-width: 50%;
-  font-size: 30px;
+  font-size: 29px;
   flex: 1;
 }
 
@@ -194,7 +187,7 @@ button.function.backspace {
 
 button.number {
   font-size: 40px;
-  font-weight: 500;
+  font-weight: 600;
   min-width: 33.3%;
   max-height: 25%;
   flex: 1;
